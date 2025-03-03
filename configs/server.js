@@ -5,6 +5,9 @@ import cors from "cors"
 import helmet from "helmet"
 import morgan from "morgan"
 import { dbConnection } from './mongo.js'
+import registerRoutes from "../src/register/resgiter-admin.routes.js"
+import studentRoutes from "../src/admin/admin.routes.js"
+
 const middlewares = (app) => {
     app.use(express.urlencoded({extended: false}))
     app.use(express.json())
@@ -13,6 +16,10 @@ const middlewares = (app) => {
     app.use(morgan("dev"))
 }
 
+const routes = (app) => {
+    app.use("/admin/v1/registro", registerRoutes)
+    app.use("/admin/v1/admin", studentRoutes)
+}
 
 const conectarDB = async () => {
     try{
