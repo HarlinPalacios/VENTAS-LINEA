@@ -1,14 +1,12 @@
 import { hash, verify } from "argon2"
-import User from "../admin/admin.model.js"
+import User from "../user/user.model.js"
 import { generateJWT } from "../helpers/generate.jwt.js";
 
 export const register = async (req, res) => {
     try {
         const data = req.body;
-        let profilePicture = req.file ? req.file.filename : null;
         const encryptedPassword = await hash(data.password)
         data.password = encryptedPassword
-        data.profilePicture = profilePicture
 
         const user = await User.create(data);
 
@@ -51,15 +49,15 @@ export const login = async (req, res) => {
         const token = await generateJWT(user.id)
 
         return res.status(200).json({
-            message: "Login generado corectamente",
+            message: "Login creado exitosamenete",
             userDetails: {
                 token: token,
             }
         })
-    }catch( err ){
+    }catch(err){
         return res.status(500).json({
             message: "login failed, server error",
-            
+            error: err.message
         })
     }
 }

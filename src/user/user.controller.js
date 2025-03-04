@@ -1,23 +1,23 @@
 import { hash, verify } from "argon2"
-import Admin from "./admin.model.js"
+import User from "../user/user.model.js"
 
-//Buscar el estudiante por uid
-export const getAdminById = async (req, res) => {
+//Buscar por id
+export const getUserById = async (req, res) => {
     try {
         const { uid } = req.params
-        const admin = await Admin.findById(uid)
+        const user = await User.findById(uid)
 
-        if (!admin) {
+        if (!user) {
             return res.status(404).json({
                 success: false,
-                message: "Admin no existe",
-                error: "No se ha encontrado un Admin con este ID"
+                message: "User no existe",
+                error: "No se ha encontrado un User con este ID"
             })
         }
 
         return res.status(200).json({
             success: true,
-            admin
+            user
         })
 
     } catch (err) {
@@ -29,15 +29,15 @@ export const getAdminById = async (req, res) => {
     }
 }
 
-//Listar los estudiante
-export const getAdmins = async (req, res) => {
+//Listar 
+export const getUsers = async (req, res) => {
     try {
         const { limits = 3, from = 0 } = req.query
         const query = { status: true }
 
-        const [total, admins] = await Promise.all([
-            Admin.countDocuments(query),
-            Admin.find(query)
+        const [total, users] = await Promise.all([
+            User.countDocuments(query),
+            User.find(query)
                 .skip(Number(from))
                 .limit(Number(limits))
         ])
@@ -45,7 +45,7 @@ export const getAdmins = async (req, res) => {
         return res.status(200).json({
             success: true,
             total,
-            admins
+            users
         })
 
     } catch (err) {
@@ -57,23 +57,23 @@ export const getAdmins = async (req, res) => {
     }
 }
 
-// Eliminar estudiante
-export const deleteAdmin = async (req, res) => {
+// Eliminar 
+export const deleteUser = async (req, res) => {
     try {
         const { uid } = req.params
-        const admin = await Admin.findByIdAndUpdate(uid, { status: false }, { new: true })
+        const user = await User.findByIdAndUpdate(uid, { status: false }, { new: true })
 
-        if (!admin) {
+        if (!user) {
             return res.status(404).json({
                 success: false,
-                message: "Admin no encontrado",
+                message: "User no encontrado",
             })
         }
 
         return res.status(200).json({
             success: true,
-            message: "Admin Eliminado",
-            admin
+            message: "User Eliminado",
+            user
         })
 
     } catch (err) {
@@ -85,13 +85,13 @@ export const deleteAdmin = async (req, res) => {
     }
 }
 
-// Actualizar la contraseña del estudiante
+// Actualizar la contraseña 
 export const updatePassword = async (req, res) => {
     try {
         const { uid } = req.params
         const { newPassword, newRole } = req.body
 
-        const admin = await Admin.findById(uid)
+        const admin = await User.findById(uid)
 
         if (!admin) {
             return res.status(404).json({
@@ -117,7 +117,7 @@ export const updatePassword = async (req, res) => {
             updateFields.role = newRole
         }
 
-        await Admin.findByIdAndUpdate(uid, updateFields)
+        await User.findByIdAndUpdate(uid, updateFields)
 
         return res.status(200).json({
             success: true,
@@ -130,5 +130,27 @@ export const updatePassword = async (req, res) => {
             message: "Error al actualizar la contraseña y el role",
             error: err.message
         })
+    }
+}
+
+//Actualizar usuario
+export const updateUser = async (req, res) => {
+    try {
+        const { uid } = req.params;
+        const  data  = req.body;
+
+        const user = await User.findByIdAndUpdate(uid, data, { new: true });
+
+        res.status(200).json({
+            success: true,
+            message: 'Usuario Actualizado',
+            user,
+        });
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: 'Error al actualizar usuario',
+            error: err.message
+        });
     }
 }

@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 //Requisitos que se deben cumplir
-const adminSchema = Schema({
+const userSchema = Schema({
     name: {
         type: String,
         required: [true, "El nombre es requerido"],
@@ -10,6 +10,11 @@ const adminSchema = Schema({
     surname: {
         type: String,
         required: [true, "El apellido es requerido"],
+        maxLength: 50
+    },
+    username: {
+        type: String,
+        required: [true, "El nombre del usuario es requerido"],
         maxLength: 50
     },
     email: {
@@ -31,17 +36,18 @@ const adminSchema = Schema({
         type: Boolean,
         default: true
     }
-}, {
+}, 
+{
     versionKey: false,
     timestamps: true
 });
 
-adminSchema.methods.toJSON = function() {
-    const { _id, ...admin } = this.toObject();
-    admin.uid = _id;
-    return admin;
+userSchema.methods.toJSON = function() {
+    const { password, _id, ...usuario } = this.toObject();
+    usuario.uid = _id;
+    return usuario;
 };
 
 
 
-export default model("Admin", adminSchema);
+export default model("usuario", userSchema);
