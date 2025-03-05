@@ -8,8 +8,8 @@ router.post("/create", createCateValidator, createCate)
 
 router.get("/", getCates)
 
-router.delete("/:uid", deleteCate)
+router.delete("/:categoriaId", deleteCate)
 
-router.patch("/:uid", updateCateValidator, updateCate)
+router.patch("/:id", updateCateValidator, updateCate)
 
 export default router

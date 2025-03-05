@@ -96,6 +96,51 @@ export const getCateById = async (req, res) => {
 
 //Eliminar categoria 
 export const deleteCate = async (req, res) => {
+    const { categoriaId } = req.body
+
+    try{
+        const categoriaDelete = await Categoria.findById(categoriaId)
+
+        if(!categoriaDelete){
+            return res.status(400).json({
+                success: false,
+                message: "Categoria no encontrada"
+            })
+        }
+
+        const productos = await Producto.find({categoria: categoriaId})
+
+        const defaultCategoria = await Categoria.findOne({name: "predeterminada"})
+
+        if(!defaultCategoria){
+            return res.status(400).json({
+                success: false,
+                message: "la carpetapredeterminada no se encontro"
+            })
+        }
+
+        for(let produc of productos){
+            produc.categoria = defaultCategoria._id
+            await produc.save()
+        }
+
+        await categoriaDelete.remove()
+        return res.status(200).json({
+            success: true,
+            message: "Categoria eliminada y productos tram=nsferidos a la carpeta predeterminada"
+        })
+
+    }catch(err) {
+        console.error("Error en deleteCategory:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Error al eliminar la categoria",
+            error: err
+        })
+    }
+}
+
+/*export const deleteCate = async (req, res) => {
     try{
         const cateId = req.params.cateId
 
@@ -144,12 +189,12 @@ export const deleteCate = async (req, res) => {
             error: err.massage
         })
     }
-}
+}*/
 
 //Actualizar categoria 
 export const updateCate = async (req, res) => {
     const { id } = req.params
-    const { cateName, cateDescription } = req.body
+    const { name, descripcion } = req.body
 
     try{
         const cate = await Categoria.findById(id)
@@ -160,8 +205,8 @@ export const updateCate = async (req, res) => {
         })
     }
 
-    cate.cateName = cateName || cateName.cateName
-    cate.cateDescription = cateDescription || cate.cateDescription
+    cate.name = name || name.name
+    cate.descripcion = descripcion || cate.descripcion
 
     await cate.save()
 
@@ -169,8 +214,8 @@ export const updateCate = async (req, res) => {
         message: "Categoria actualizada", cate
     })
     
-    }catch(error) {
-        console.error(error)
+    }catch(err) {
+        console.error(err)
         return res.status(500).json({
             message: "Error al actualizar la categoria",
             error: err.message
