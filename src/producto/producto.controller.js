@@ -186,3 +186,41 @@ export const updateProduc = async (req, res) => {
         })
     }
 }
+
+//Productos Agotados
+export const getProducAgo = async (req, res) => {
+    try{
+        const productos = await Producto.find({stock:  0})
+        return res.status(200)({
+            success: true,
+            message: "Productos agotados",
+            productos: productos
+        })
+
+    }catch(err) {
+        return res.status(500).json({
+            success: false,
+            message: "Error al obtener los productos agotados "
+        })
+    }
+}
+
+//Productos mas vendidos
+export const getProducVendi = async (req, res) => {
+    try{
+        const produs = await Produs.find().sort({soldCantity: -1})
+
+        return res.status(200).json({
+            success: true,
+            message: "Productos mas vendidos",
+            produs: produs
+        })
+
+    }catch(err) {
+        return res.status(500).json({
+            sucess: false,
+
+            message: "Error al obtener los productos mas vendidos"
+        })
+    }
+}
