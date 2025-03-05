@@ -173,7 +173,7 @@ export const updateCate = async (req, res) => {
         console.error(error)
         return res.status(500).json({
             message: "Error al actualizar la categoria",
-            error: err.mesage
+            error: err.message
         })
     }
 }
