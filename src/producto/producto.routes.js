@@ -8,7 +8,7 @@ router.post("/createPro", createProductoValidator, createProducto)
 
 router.get("/listar", getProducto)
 
-router.get("/listarCate/:uid", getCatePro)
+router.get("/listarCate/:categoriaId", getCatePro)
 
 router.delete("/delete/:productoId", deleteProducValidator, deleteProduc)
 
