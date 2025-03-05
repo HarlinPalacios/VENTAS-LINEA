@@ -1,0 +1,621 @@
+{
+	"info": {
+		"_postman_id": "bf380cec-5c91-441b-b287-292d8e421311",
+		"name": "Ventas-Online",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41829725"
+	},
+	"item": [
+		{
+			"name": "Registro",
+			"item": [
+				{
+					"name": "regirto-admin",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Sofia\",\r\n  \"surname\": \"Fernandez\",\r\n  \"username\": \"sofiaf77\",\r\n  \"email\": \"sofia.fernandez@example.com\",\r\n  \"password\": \"Sofia@789$fer\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/admin/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"deleon7634@gmail.com\",\r\n    \"password\": \"ssths$jhdJE32465\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/admin/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3001/admin/v1/user/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"v1",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M4ZDJhMmQ2Zjc3YmNkZWYyYjQxOTYiLCJpYXQiOjE3NDEyMTQzODAsImV4cCI6MTc0MTU3MDc4MH0.pH2SFSMPxZm8NT7dmpOjFBPr3HzenImjTHk0sUfeUI0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3001/admin/v1/user/67c8d289d6f77bcdef2b4194",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"v1",
+								"user",
+								"67c8d289d6f77bcdef2b4194"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar comtraseña",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newPassword\": \"67c8d2rg6f77fjhkdef2b4196$#\",\r\n    \"newRole\": \"ADMIN_ROLE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/admin/v1/user/67c8d2a2d6f77bcdef2b4196",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"v1",
+								"user",
+								"67c8d2a2d6f77bcdef2b4196"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/admin/v1/user/67c8d2a2d6f77bcdef2b4196",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"v1",
+								"user",
+								"67c8d2a2d6f77bcdef2b4196"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Genobeba\",\r\n  \"surname\": \"Ortiz\",\r\n  \"username\": \"gOrtiz14\",\r\n  \"email\": \"genobeba@gmail.com\",\r\n  \"password\": \"ssths$jhdJE32465\",\r\n  \"role\": \"ADMIN_ROLE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/admin/v1/user/67c7f279bdcd7113ccc8810a",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"v1",
+								"user",
+								"67c7f279bdcd7113ccc8810a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categorias",
+			"item": [
+				{
+					"name": "Listar Categorías",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3001/admin/v1/categoria/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"v1",
+								"categoria",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Categoria",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M4ZDJhMmQ2Zjc3YmNkZWYyYjQxOTYiLCJpYXQiOjE3NDEyMTQzODAsImV4cCI6MTc0MTU3MDc4MH0.pH2SFSMPxZm8NT7dmpOjFBPr3HzenImjTHk0sUfeUI0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Computadora de Oficina\",\r\n  \"descripcion\": \"Computadora sencilla y eficiente para tareas de oficina y navegación web\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/admin/v1/categoria/create",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"v1",
+								"categoria",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Categoria",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3001/admin/v1/categoria/67c7fccee17980335b0d0ad3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"v1",
+								"categoria",
+								"67c7fccee17980335b0d0ad3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Categoria",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M4ZDJhMmQ2Zjc3YmNkZWYyYjQxOTYiLCJpYXQiOjE3NDEyMTQzODAsImV4cCI6MTc0MTU3MDc4MH0.pH2SFSMPxZm8NT7dmpOjFBPr3HzenImjTHk0sUfeUI0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Cumputadoras\",\r\n    \"descripcion\": \"Computadoras de alta gama\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/admin/v1/categoria/67c8d3f15f2938da2ef05f5d",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"v1",
+								"categoria",
+								"67c8d3f15f2938da2ef05f5d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "Agregar Producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M4ZDJhMmQ2Zjc3YmNkZWYyYjQxOTYiLCJpYXQiOjE3NDEyMTQzODAsImV4cCI6MTc0MTU3MDc4MH0.pH2SFSMPxZm8NT7dmpOjFBPr3HzenImjTHk0sUfeUI0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Teclado Compacto\",\r\n  \"descripcion\": \"Teclado compacto de 60% con diseño minimalista\",\r\n  \"precio\": \"300\",\r\n  \"marca\": \"Redragon\",\r\n  \"stock\": \"90\",\r\n  \"categoriaId\": \"67c8d3f15f2938da2ef05f5d\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/admin/v1/producto/createPro",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"v1",
+								"producto",
+								"createPro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Productos Generales",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3001/admin/v1/producto/listar",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"v1",
+								"producto",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M4ZDJhMmQ2Zjc3YmNkZWYyYjQxOTYiLCJpYXQiOjE3NDEyMTQzODAsImV4cCI6MTc0MTU3MDc4MH0.pH2SFSMPxZm8NT7dmpOjFBPr3HzenImjTHk0sUfeUI0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"Mouse\",\r\n   \"descripcion\": \"El mejor mouse de Guatemala\",\r\n   \"precio\": \"30\",\r\n   \"marca\": \"Mouse\",\r\n   \"stock\": \"25\",\r\n   \"categoriaId\": \"67c8d3f15f2938da2ef05f5d\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/admin/v1/producto/actuluizar/67c8d4985f2938da2ef05f6f",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"v1",
+								"producto",
+								"actuluizar",
+								"67c8d4985f2938da2ef05f6f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M4ZDJhMmQ2Zjc3YmNkZWYyYjQxOTYiLCJpYXQiOjE3NDEyMTQzODAsImV4cCI6MTc0MTU3MDc4MH0.pH2SFSMPxZm8NT7dmpOjFBPr3HzenImjTHk0sUfeUI0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3001/admin/v1/producto/delete/67c8d4985f2938da2ef05f6f",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"v1",
+								"producto",
+								"delete",
+								"67c8d4985f2938da2ef05f6f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Categoría con Productos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3001/admin/v1/producto/listarCate/67c7fdb9e17980335b0d0ae9",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"v1",
+								"producto",
+								"listarCate",
+								"67c7fdb9e17980335b0d0ae9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

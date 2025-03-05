@@ -1,0 +1,54 @@
+[{
+  "_id": {
+    "$oid": "67c8d3f15f2938da2ef05f5d"
+  },
+  "name": "Cumputadoras",
+  "descripcion": "Computadoras de alta gama",
+  "status": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c8dd8302f90b5eb6157efb"
+  },
+  "name": "Computadora de Escritorio",
+  "descripcion": "Computadora de escritorio de alto rendimiento para juegos y trabajo profesional",
+  "status": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c8dd8902f90b5eb6157eff"
+  },
+  "name": "Computadora Portátil",
+  "descripcion": "Computadora portátil ultradelgada y liviana, ideal para estudiantes y profesionales",
+  "status": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c8dd9002f90b5eb6157f03"
+  },
+  "name": "Computadora para Gaming",
+  "descripcion": "Computadora optimizada para juegos, con alto rendimiento gráfico y velocidad",
+  "status": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c8dd9e02f90b5eb6157f09"
+  },
+  "name": "Computadora de Estudio",
+  "descripcion": "Computadora para trabajos de diseño gráfico, edición de video y otras tareas creativas",
+  "status": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c8dda502f90b5eb6157f0d"
+  },
+  "name": "Computadora de Oficina",
+  "descripcion": "Computadora sencilla y eficiente para tareas de oficina y navegación web",
+  "status": true,
+  "__v": 0
+}]

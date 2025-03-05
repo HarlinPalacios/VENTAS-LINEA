@@ -1,0 +1,98 @@
+[{
+  "_id": {
+    "$oid": "67c8dcdd02f90b5eb6157ed6"
+  },
+  "name": "Teclado",
+  "descripcion": "El mejor teclado",
+  "precio": 350,
+  "marca": "Mouse",
+  "stock": 50,
+  "categoria": {
+    "$oid": "67c8d3f15f2938da2ef05f5d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c8dd1b02f90b5eb6157edb"
+  },
+  "name": "Teclado Mecánico",
+  "descripcion": "Teclado mecánico con retroiluminación RGB",
+  "precio": 450,
+  "marca": "Razer",
+  "stock": 120,
+  "categoria": {
+    "$oid": "67c8d3f15f2938da2ef05f5d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c8dd2302f90b5eb6157ee0"
+  },
+  "name": "Teclado Ergonómico",
+  "descripcion": "Teclado ergonómico con teclas suaves",
+  "precio": 500,
+  "marca": "Logitech",
+  "stock": 80,
+  "categoria": {
+    "$oid": "67c8d3f15f2938da2ef05f5d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c8dd2a02f90b5eb6157ee5"
+  },
+  "name": "Teclado Inalámbrico",
+  "descripcion": "Teclado inalámbrico compacto y ligero",
+  "precio": 350,
+  "marca": "Microsoft",
+  "stock": 200,
+  "categoria": {
+    "$oid": "67c8d3f15f2938da2ef05f5d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c8dd3902f90b5eb6157eed"
+  },
+  "name": "Teclado Gaming",
+  "descripcion": "Teclado gaming con switches mecánicos y macros",
+  "precio": 700,
+  "marca": "Corsair",
+  "stock": 60,
+  "categoria": {
+    "$oid": "67c8d3f15f2938da2ef05f5d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c8dd3f02f90b5eb6157ef2"
+  },
+  "name": "Teclado Multimedia",
+  "descripcion": "Teclado con controles multimedia y teclas adicionales",
+  "precio": 400,
+  "marca": "HP",
+  "stock": 150,
+  "categoria": {
+    "$oid": "67c8d3f15f2938da2ef05f5d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c8dd4502f90b5eb6157ef7"
+  },
+  "name": "Teclado Compacto",
+  "descripcion": "Teclado compacto de 60% con diseño minimalista",
+  "precio": 300,
+  "marca": "Redragon",
+  "stock": 90,
+  "categoria": {
+    "$oid": "67c8d3f15f2938da2ef05f5d"
+  },
+  "__v": 0
+}]
