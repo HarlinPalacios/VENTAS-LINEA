@@ -8,6 +8,7 @@ import { dbConnection } from './mongo.js'
 import authRoutes from "../src/auth/auth.routes.js"
 import userRoutes from "../src/user/user.routes.js"
 import cateRoutes from "../src/categoria/cate.routes.js"
+import producRoutes from "../src/producto/producto.routes.js"
 import { createAdmin } from "../src/user/user.controller.js"
 
 const middlewares = (app) => {
@@ -22,6 +23,7 @@ const routes = (app) => {
     app.use("/admin/v1/auth", authRoutes)
     app.use("/admin/v1/user", userRoutes)
     app.use("/admin/v1/categoria", cateRoutes)
+    app.use("/admin/v1/producto", producRoutes)
 }
 
 const conectarDB = async () => {
@@ -45,3 +47,4 @@ export const initServer = () => {
         console.log(`Server init failed: ${err}`)
     }
 }
+
