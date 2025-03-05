@@ -1,16 +1,17 @@
 import {Router} from "express"
 import { createProducto, getProducto, getCatePro, deleteProduc, updateProduc } from "./producto.controller.js"
+import { createProductoValidator, deleteProducValidator, updateProducValidator } from "../middlewares/produc-validators.js"
 
 const router = Router()
 
-router.post("/createPro", createProducto)
+router.post("/createPro", createProductoValidator, createProducto)
 
 router.get("/listar", getProducto)
 
-router.get("listarCate", getCatePro)
+router.get("/listarCate/:uid", getCatePro)
 
-router.delete("/delete", deleteProduc)
+router.delete("/delete/:productoId", deleteProducValidator, deleteProduc)
 
-router.put("/actuluizar", updateProduc)
+router.put("/actuluizar/:productoId", updateProducValidator, updateProduc)
 
 export default router

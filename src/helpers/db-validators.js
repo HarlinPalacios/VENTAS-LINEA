@@ -20,3 +20,10 @@ export const cateExists = async(uid = '') => {
         throw new Error(`El user no existe`)
     }
 }
+
+export const producExists = async(uid = '') => {
+    const existe = await User.findById(uid)
+    if(!existe){
+        throw new Error(`El user no existe`)
+    }
+}

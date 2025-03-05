@@ -14,7 +14,7 @@ const productoSchema = Schema ({
         type: Number,
         required: true
     },
-    marcar: {
+    marca: {
         type: String,
         required: true
     },

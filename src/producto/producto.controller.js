@@ -3,7 +3,7 @@ import Categoria from "../categoria/cate.model.js"
 
 export const createProducto = async (req, res) => {
     try{
-        const { name, descripcion, precio, marca, stock, categoriaId} = res.body
+        const { name, descripcion, precio, marca, stock, categoriaId} = req.body
 
         //verifica si la categoria existe
         const categoria = await Categoria.findById(categoriaId)
@@ -15,7 +15,15 @@ export const createProducto = async (req, res) => {
             })
         }
 
-        const Producto = Producto({
+        const producExists = await Producto.findOne({ name: name });
+        if (producExists) {
+            return res.status(400).json({
+                success: false,
+                message: "El producto ya existe"
+            });
+        } 
+
+        const newProducto = new Producto({
             name,
             descripcion,
             precio,
@@ -24,12 +32,12 @@ export const createProducto = async (req, res) => {
             categoria: categoriaId
         })
 
-        await Producto.save()
+        await newProducto.save()
 
         return res.status(200).json({
             success: true,
             message: "El producto a sido creado",
-            preducto: Producto
+            producto: newProducto
         })
 
     }catch(err){
@@ -45,7 +53,7 @@ export const createProducto = async (req, res) => {
 export const getProducto = async (req, res) => {
     try{
         const produs = await Producto.find()
-        const totalProdus = produs.length
+        const total = produs.length
 
         const produsWithCategoria = []
 
@@ -59,7 +67,7 @@ export const getProducto = async (req, res) => {
         }
 
         return res.json({
-            totalProdus,
+            total,
             producto: produsWithCategoria
         })
 
@@ -100,35 +108,41 @@ export const deleteProduc = async (req, res) => {
 }
 
 //Listar productos por su categoria
+//NO FUNCIONAL
 export const getCatePro = async (req, res) => {
-    try{
-        const { categoriaId } = req.params
-        const categoria = await Categoria.findById(categoriaId)
+    try {
+        const { categoriaId } = req.params;
 
-        if(!categoria){
-            return res.status(400).json({
+        // Buscar la categoría
+        const categoria = await Categoria.findById(categoriaId);
+
+        if (!categoria) {
+            return res.status(404).json({
                 success: false,
-                massage: "Categoria no encontrada"
-            })
+                message: "Categoría no encontrada"
+            });
         }
 
-        const productos = await Producto.find({categoria: categoriaId})
+        // Buscar productos relacionados con esa categoría
+        const productos = await Producto.find({ categoria: categoriaId });
 
         return res.status(200).json({
             success: true,
-            message: "El producto a sido obtenido por su categoria",
-            total: productos.length,
-            categoria: categoria.nombre,
+            message: "Categoría y productos obtenidos",
+            categoria,
             productos
-        })
-    }catch(err){
-        return res.status(500).json({
+        });
+
+    } catch (err) {
+        console.log("categoriaId:", categoriaId);
+            return res.status(500).json({
             success: false,
-            message: "Error al obtener el producto por su categoria",
-            error: err.massage
-        })
+            message: "Error al obtener la categoría y sus productos",
+            error: err.message
+        });
     }
 }
+
 
 //Actualizar Producto
 export const updateProduc = async (req, res) => {
@@ -145,14 +159,11 @@ export const updateProduc = async (req, res) => {
             })
         }
 
-        const updateProduc = await Producto.findByIdUpdate(
+        const updateProduc = await Producto.findByIdAndUpdate(
             productoId,
             {name, descripcion, precio, marca, stock, categoria: categoriaId},
             {new: true}
         )
-
-        const producExistente = await Producto.findById(productoId)
-        console.log("Id recibido", productoId)
 
         if(!updateProduc){
             return res.status(400).json({
