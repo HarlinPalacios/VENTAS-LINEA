@@ -1,4 +1,5 @@
 import Categoria from "./cate.model.js"
+import mongoose from "mongoose";
 
 //crear Categoria
 export const createCate = async (req, res) => {
@@ -98,15 +99,37 @@ export const deleteCate = async (req, res) => {
     try{
         const cateId = req.params.cateId
 
+        if (!mongoose.Types.ObjectId.isValid(cateId)) {
+            return res.status(400).json({
+                success: false,
+                message: "El ID de la categoría no es válido"
+            });
+        }
+
         const cate = await Categoria.findById(cateId)
 
-        if(productos.lengt > 0) {
-            const defaultCate = await Categoria.findOne({ name: 'cate-predeterminada'})
+        if(!cate) {
+            return res.status(400).json({
+                success: false,
+                message: "La categoria no existe"
+            })
+        }
 
-            await Productos.updateMany({
-                cateId ,
-                cateId: defaultCate.id 
-        })
+        const productos = await Producto.find({ Categoria: cateId})
+
+        if (productos.length > 0) {
+            const defaultCate = await Categoria.findOne({ name: 'cate-predeterminada' });
+
+            if (!defaultCate) {
+                return res.status(400).json({
+                    message: "Categoría predeterminada no encontrada"
+                });
+            }
+
+            await Producto.updateMany(
+                { categoria: cateId },
+                { $set: { categoria: defaultCate._id}}
+            ) 
         }
 
         await cate.remove()
