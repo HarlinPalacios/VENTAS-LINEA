@@ -5,6 +5,10 @@ import cors from "cors"
 import helmet from "helmet"
 import morgan from "morgan"
 import { dbConnection } from './mongo.js'
+import authRoutes from "../src/auth/auth.routes.js"
+import userRoutes from "../src/user/user.routes.js"
+import { createAdmin } from "../src/user/user.controller.js"
+
 const middlewares = (app) => {
     app.use(express.urlencoded({extended: false}))
     app.use(express.json())
@@ -13,10 +17,15 @@ const middlewares = (app) => {
     app.use(morgan("dev"))
 }
 
+const routes = (app) => {
+    app.use("/admin/v1/auth", authRoutes)
+    app.use("/admin/v1/user", userRoutes)
+}
 
 const conectarDB = async () => {
     try{
         await dbConnection()
+        await createAdmin()
     }catch(err){
         console.log(`Database connection failed: ${err}`)
     }
